@@ -1,0 +1,25 @@
+A universally unique identifier (UUID) is a 128-bit label hence the use of 16 byte ID cards.
+Since there are a 'few megabytes' of storage on the microcontroller and information is received from a 16 byte card ID
+As an estimate, 62500 ID cards can be stored on the microcontroller.
+
+1,000,000 / 16 = 62500 
+
+The list of known card IDs could be stored in an array.
+The array could be sorted, in the cloud, to reduce processing demands on the microcontroller.
+The sorted array could then be stored on the microcontroller
+
+Binary search is an algorithm that can be used to find an element in a sorted list. It runs in log time O(log n). So if we have an array of 62500 elements, an estimate for the maximum number of steps is 15.93. As the checks of ID on the list occurs frequently, a relatively fast and reliable method of finding the ID on the microcontroller, to ensure that a user is permitted is important.
+Log2(x); Where x = 62500
+
+An alternate method could involve using a Hash map or a Set, however this requires additional storage and computation.
+In terms of data structure operations searching a sorted array can take 0(log(n)) whereas a hash map can take 0(1) time. 
+
+Considerations also include how many users should have access in total as this would help determine the amount of data that needs to be stored.
+Syncing data such as current valid access cards with the cloud when changes are made is necessary, although these changes may occur infrequently. It is also important to sync data if connectivity to the cloud is temporarily unavailable.
+Audit logs of users access activity could be stored and uploaded to the cloud, in case of loss of connectivity, this could be an additional feature but would require further data storage and processing.
+Another consideration was the use of cryptography hashing to transform data into a reduced storage version but algorithms such as SHA-1, SHA-2, SHA-3 result in an output of more than 128 bits, hence would not reduce storage demands.
+
+A microcontroller has main memory types: Program memory, which stores long-term information about the instructions that the CPU carries out. Data memory, which is required for temporary data storage while the instructions are being executed.
+As the microcontroller is low powered and with restricted processing, operations that are more resource intensive would be more effectively handled in the cloud than on the microcontroller.
+
+Overall, an appropriate approach would consider the data requirements of the ID card, the restrictions of storage and processing of the microcontroller and the connectivity, utilisation and functionality of the cloud for the purpose of checking if the user is permitted by comparing stored card ID data.
